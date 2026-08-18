@@ -1,0 +1,311 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdm: <https://w3id.org/crm-sdm#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dct:created a owl:AnnotationProperty .
+
+dct:creator a owl:AnnotationProperty .
+
+dct:identifier a owl:AnnotationProperty .
+
+dct:license a owl:AnnotationProperty .
+
+dct:source a owl:AnnotationProperty .
+
+dct:title a owl:AnnotationProperty .
+
+skos:closeMatch a owl:AnnotationProperty .
+
+skos:definition a owl:AnnotationProperty .
+
+skos:exactMatch a owl:AnnotationProperty .
+
+skos:example a owl:AnnotationProperty .
+
+skos:notation a owl:AnnotationProperty .
+
+skos:prefLabel a owl:AnnotationProperty .
+
+prov:hadPrimarySource a owl:ObjectProperty .
+
+<https://w3id.org/crm-sdm> a owl:Ontology ;
+    dct:created "2026-07-20"^^xsd:date ;
+    dct:creator "Andrea Bernardini" ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:title "CRM-SDM Ontology"@en ;
+    rdfs:comment "OWL 2 formalization of the Knowledge-Graph-based Strategic Digital Model for Critical Raw Material supply chains. TBOX only – no individuals."@en ;
+    owl:versionIRI <https://w3id.org/crm-sdm/1.0> ;
+    owl:versionInfo "1.0.0" .
+
+sdm:EmpiricalTrader a owl:Class ;
+    rdfs:label "Empirical trader"@en ;
+    rdfs:subClassOf sdm:Trader ;
+    owl:disjointWith sdm:SyntheticTrader ;
+    skos:definition "Trader corresponding to a real, documented firm (Empirical Layer)."@en .
+
+sdm:StableCriticalIntermediary a owl:Class ;
+    rdfs:label "Stable critical intermediary"@en ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( sdm:Trader [ a owl:Restriction ;
+                        owl:onProperty sdm:nodalElasticity ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:decimal ;
+                                owl:withRestrictions ( [ xsd:minInclusive 0.5 ] ) ] ] [ a owl:Restriction ;
+                        owl:onProperty sdm:locatedIn ;
+                        owl:someValuesFrom sdm:FavorableGovernanceCountry ] [ a owl:Restriction ;
+                        owl:onProperty [ owl:inverseOf sdm:suppliesTo ] ;
+                        owl:someValuesFrom sdm:Trader ] [ a owl:Restriction ;
+                        owl:onProperty sdm:suppliesToTransitively ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:intersectionOf ( sdm:Trader [ a owl:Restriction ;
+                                            owl:onProperty sdm:locatedIn ;
+                                            owl:someValuesFrom sdm:TargetEconomy ] ) ] ] ) ] ;
+    skos:definition "Politically stable intermediary acting as an indirect risk amplifier."@en .
+
+sdm:annualTradeValueUsd a owl:DatatypeProperty ;
+    rdfs:label "annual trade value q_i,c (USD)"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range xsd:decimal .
+
+sdm:associatedWithRisk a owl:ObjectProperty ;
+    rdfs:label "associated with concentration risk"@en ;
+    rdfs:domain sdm:CriticalRawMaterial ;
+    rdfs:range sdm:ConcentrationRisk .
+
+sdm:betweennessCentrality a owl:DatatypeProperty ;
+    rdfs:label "weighted betweenness centrality"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range xsd:decimal .
+
+sdm:chokepointRisk a owl:DatatypeProperty ;
+    rdfs:label "chokepoint risk score"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range xsd:decimal .
+
+sdm:closureLoss a owl:DatatypeProperty ;
+    rdfs:label "closure loss (%)"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range xsd:decimal .
+
+sdm:economicImportanceScore a owl:DatatypeProperty ;
+    rdfs:label "Economic Importance score (EI)"@en ;
+    rdfs:domain sdm:CriticalRawMaterial ;
+    rdfs:range xsd:decimal .
+
+sdm:geoRiskScore a owl:DatatypeProperty ;
+    rdfs:label "country-level geopolitical risk score"@en ;
+    rdfs:comment "Complement of wgiCompositeScore (1 - wgiCompositeScore) in the operational KG."@en ;
+    rdfs:range xsd:decimal .
+
+sdm:hasDestination a owl:ObjectProperty ;
+    rdfs:label "has destination"@en ;
+    rdfs:domain sdm:TradeFlow ;
+    rdfs:range sdm:Trader .
+
+sdm:hasGeopoliticalRisk a owl:ObjectProperty ;
+    rdfs:label "has geopolitical risk"@en ;
+    rdfs:domain sdm:Country ;
+    rdfs:range sdm:GeopoliticalRiskIndicator .
+
+sdm:hasOrigin a owl:ObjectProperty ;
+    rdfs:label "has origin"@en ;
+    rdfs:domain sdm:TradeFlow ;
+    rdfs:range sdm:Trader .
+
+sdm:hhiScore a owl:DatatypeProperty ;
+    rdfs:label "HHI score"@en ;
+    rdfs:domain sdm:ConcentrationRisk ;
+    rdfs:range xsd:decimal .
+
+sdm:importShare a owl:DatatypeProperty ;
+    rdfs:label "import share P_ij"@en ;
+    rdfs:domain sdm:TradeFlow ;
+    rdfs:range xsd:decimal .
+
+sdm:indirectlySupplies a owl:ObjectProperty ;
+    rdfs:label "indirectly supplies"@en ;
+    owl:propertyChainAxiom ( sdm:suppliesTo sdm:suppliesToTransitively ) ;
+    skos:definition "Holds between i and j when i reaches j through at least one intermediary."@en .
+
+sdm:involvesMaterial a owl:ObjectProperty ;
+    rdfs:label "involves material"@en ;
+    rdfs:domain sdm:TradeFlow ;
+    rdfs:range sdm:CriticalRawMaterial .
+
+sdm:mainHSCode a owl:DatatypeProperty ;
+    rdfs:label "main HS code"@en ;
+    rdfs:domain sdm:CriticalRawMaterial ;
+    rdfs:range xsd:string .
+
+sdm:massKg a owl:DatatypeProperty ;
+    rdfs:label "traded mass (kg)"@en ;
+    rdfs:domain sdm:TradeFlow ;
+    rdfs:range xsd:decimal .
+
+sdm:maxFirmsPerCountry a owl:DatatypeProperty ;
+    rdfs:label "upper bound N_max"@en ;
+    rdfs:domain sdm:DownscalingActivity ;
+    rdfs:range xsd:integer .
+
+sdm:paretoAlpha a owl:DatatypeProperty ;
+    rdfs:label "Pareto shape parameter alpha"@en ;
+    rdfs:domain sdm:DownscalingActivity ;
+    rdfs:range xsd:decimal .
+
+sdm:propagationConverged a owl:DatatypeProperty ;
+    rdfs:label "propagation converged"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range xsd:boolean .
+
+sdm:randomSeed a owl:DatatypeProperty ;
+    rdfs:label "random seed"@en ;
+    rdfs:domain sdm:DownscalingActivity ;
+    rdfs:range xsd:integer .
+
+sdm:referenceYear a owl:DatatypeProperty ;
+    rdfs:label "reference year"@en ;
+    rdfs:domain sdm:TradeFlow ;
+    rdfs:range xsd:integer .
+
+sdm:scalingFactorK a owl:DatatypeProperty ;
+    rdfs:label "scaling parameter K"@en ;
+    rdfs:domain sdm:DownscalingActivity ;
+    rdfs:range xsd:integer .
+
+sdm:strategicCategory a owl:DatatypeProperty ;
+    rdfs:label "strategic/critical category (CRM Act)"@en ;
+    rdfs:domain sdm:CriticalRawMaterial ;
+    rdfs:range xsd:string .
+
+sdm:supplyRiskScore a owl:DatatypeProperty ;
+    rdfs:label "Supply Risk score (SR)"@en ;
+    rdfs:domain sdm:CriticalRawMaterial ;
+    rdfs:range xsd:decimal .
+
+sdm:targetHHI a owl:DatatypeProperty ;
+    rdfs:label "calibration target HHI"@en ;
+    rdfs:domain sdm:DownscalingActivity ;
+    rdfs:range xsd:decimal .
+
+sdm:tradeValueUsd a owl:DatatypeProperty ;
+    rdfs:label "trade value (USD)"@en ;
+    rdfs:domain sdm:TradeFlow ;
+    rdfs:range xsd:decimal .
+
+sdm:traderRole a owl:DatatypeProperty ;
+    rdfs:label "trader role (importer/exporter/hub/mixed)"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range xsd:string .
+
+sdm:tradesMaterial a owl:ObjectProperty ;
+    rdfs:label "trades material"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range sdm:CriticalRawMaterial .
+
+sdm:volumeTYear a owl:DatatypeProperty ;
+    rdfs:label "annual traded volume (tonnes)"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range xsd:decimal .
+
+sdm:withinCountryShare a owl:DatatypeProperty ;
+    rdfs:label "within-country market share"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range xsd:decimal .
+
+skos:Concept a owl:Class .
+
+org:Organization a owl:Class .
+
+prov:Activity a owl:Class .
+
+prov:wasGeneratedBy a owl:ObjectProperty .
+
+sdm:FavorableGovernanceCountry a owl:Class ;
+    rdfs:label "Country with favorable governance"@en ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( sdm:Country [ a owl:Restriction ;
+                        owl:onProperty sdm:wgiCompositeScore ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:decimal ;
+                                owl:withRestrictions ( [ xsd:minInclusive 0.5 ] ) ] ] ) ] ;
+    skos:definition "Country whose rescaled WGI composite score is at least 0.5."@en .
+
+sdm:GeopoliticalRiskIndicator a owl:Class ;
+    rdfs:label "Geopolitical risk indicator"@en ;
+    skos:definition "Reified set of country-level governance/risk indicators (WGI-based)."@en .
+
+sdm:SyntheticTrader a owl:Class ;
+    rdfs:label "Synthetic trader"@en ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty prov:wasGeneratedBy ;
+            owl:someValuesFrom sdm:DownscalingActivity ],
+        sdm:Trader ;
+    skos:definition "Trader generated by the Pareto-calibrated downscaling procedure."@en .
+
+sdm:TargetEconomy a owl:Class ;
+    rdfs:label "Target economy node"@en ;
+    rdfs:comment "Marks the jurisdiction that is the target j* of the elasticity analysis, not the trader node located in it. Reachability in StableCriticalIntermediary is therefore expressed as reaching some Trader located in a TargetEconomy."@en ;
+    rdfs:subClassOf sdm:Country ;
+    skos:definition "Node designated as the target economy j* of the elasticity analysis."@en .
+
+sdm:nodalElasticity a owl:DatatypeProperty ;
+    rdfs:label "nodal elasticity E_k"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range xsd:decimal .
+
+sdm:wgiCompositeScore a owl:DatatypeProperty ;
+    rdfs:label "WGI composite score"@en ;
+    rdfs:comment "Rescaled composite of the six Worldwide Governance Indicators. Values in [0,1]."@en ;
+    rdfs:range xsd:decimal .
+
+sdm:ConcentrationRisk a owl:Class ;
+    rdfs:label "Concentration risk"@en ;
+    skos:definition "Market concentration indicator associated with the supply distribution of a CRM."@en .
+
+sdm:locatedIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "located in"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range sdm:Country .
+
+sdm:suppliesTo a owl:ObjectProperty ;
+    rdfs:label "supplies to (direct)"@en ;
+    rdfs:domain sdm:Trader ;
+    rdfs:range sdm:Trader ;
+    rdfs:subPropertyOf sdm:suppliesToTransitively .
+
+sdm:suppliesToTransitively a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "supplies to (transitive closure)"@en ;
+    skos:definition "Reachability over supply relations."@en .
+
+sdm:Country a owl:Class ;
+    rdfs:label "Country"@en ;
+    skos:definition "Sovereign state where a trader operates or raw materials are extracted."@en .
+
+sdm:DownscalingActivity a owl:Class ;
+    rdfs:label "Downscaling activity"@en ;
+    rdfs:subClassOf prov:Activity ;
+    skos:definition "A parameterized execution of the Pareto-calibrated synthetic firm generation procedure."@en .
+
+sdm:CriticalRawMaterial a owl:Class ;
+    rdfs:label "Critical Raw Material"@en ;
+    rdfs:subClassOf skos:Concept ;
+    skos:definition "Strategic mineral or material included in the supply-chain analysis."@en .
+
+sdm:TradeFlow a owl:Class ;
+    rdfs:label "Trade flow"@en ;
+    skos:definition "Reified trade relationship W_ij between two supply-network nodes, carrying monetary value, reference year, HS classification and import share."@en .
+
+sdm:Trader a owl:Class ;
+    rdfs:label "Trader"@en ;
+    rdfs:subClassOf org:Organization ;
+    skos:closeMatch <https://spec.industrialontologies.org/ontology/construct/SupplyChainAgent> ;
+    skos:definition "Economic agent involved in the import, export, processing, or redistribution of CRM-related products."@en .
+

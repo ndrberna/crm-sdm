@@ -1,0 +1,171 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix sdm:  <https://w3id.org/crm-sdm#> .
+@prefix sh-sdm: <https://w3id.org/crm-sdm/shapes#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+
+<https://w3id.org/crm-sdm/shapes> a owl:Ontology ;
+    rdfs:label "CRM-SDM validation shapes"@en ;
+    rdfs:comment """Pre-flight gate for the generated knowledge graph.
+
+Run after every regeneration of the chain:
+
+    pyshacl -s ontology/crm-sdm-shapes.ttl -df turtle -f human \\
+            data/crm-sdm-kg.ttl
+
+Violations are structural defects and must be fixed upstream (in the Neo4j
+graph or in the conversion scripts), never by editing the TTL. Warnings are
+known open issues that clear themselves once the corresponding upstream fix
+lands; they are deliberately left firing so that the gate doubles as a
+to-do list."""@en ;
+    owl:versionInfo "1.0.0" .
+
+sh-sdm:prefixes
+    sh:declare [ sh:prefix "sdm"  ; sh:namespace "https://w3id.org/crm-sdm#"^^xsd:anyURI ] ,
+              [ sh:prefix "skos" ; sh:namespace "http://www.w3.org/2004/02/skos/core#"^^xsd:anyURI ] ,
+              [ sh:prefix "dct"  ; sh:namespace "http://purl.org/dc/terms/"^^xsd:anyURI ] .
+
+# =====================================================================
+# A. Vincoli strutturali — devono passare
+# =====================================================================
+
+sh-sdm:TradeFlowShape a sh:NodeShape ;
+    sh:targetClass sdm:TradeFlow ;
+    sh:property [ sh:path sdm:hasOrigin      ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:message "Ogni TradeFlow deve avere esattamente un nodo di origine." ] ;
+    sh:property [ sh:path sdm:hasDestination ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:message "Ogni TradeFlow deve avere esattamente una destinazione." ] ;
+    sh:property [ sh:path sdm:importShare ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ;
+                  sh:message "importShare e' una quota: deve stare in [0,1]." ] ;
+    sh:property [ sh:path sdm:tradeValueUsd ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0.0 ;
+                  sh:message "tradeValueUsd non puo' essere negativo." ] .
+
+sh-sdm:SyntheticTraderShape a sh:NodeShape ;
+    sh:targetClass sdm:SyntheticTrader ;
+    sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:class sdm:DownscalingActivity ;
+                  sh:message "Un trader sintetico deve dichiarare l'attivita' di downscaling che lo ha generato: e' la sola garanzia che sintetico ed empirico restino distinguibili." ] ;
+    sh:property [ sh:path sdm:locatedIn ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+sh-sdm:EmpiricalTraderShape a sh:NodeShape ;
+    sh:targetClass sdm:EmpiricalTrader ;
+    sh:property [ sh:path prov:hadPrimarySource ; sh:minCount 1 ;
+                  sh:message "Un trader empirico deve citare la fonte primaria che lo documenta." ] ;
+    sh:property [ sh:path sdm:locatedIn ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+sh-sdm:GovernanceRangeShape a sh:NodeShape ;
+    sh:targetSubjectsOf sdm:wgiCompositeScore ;
+    sh:property [ sh:path sdm:wgiCompositeScore ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ;
+                  sh:message "Il composito WGI e' riscalato in [0,1]." ] ;
+    sh:property [ sh:path sdm:geoRiskScore ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ] .
+
+sh-sdm:ElasticityShape a sh:NodeShape ;
+    sh:targetSubjectsOf sdm:nodalElasticity ;
+    sh:property [ sh:path sdm:nodalElasticity ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0.0 ;
+                  sh:message "L'elasticita' nodale non puo' essere negativa." ] ;
+    sh:property [ sh:path sdm:closureLoss ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0.0 ; sh:maxInclusive 100.0 ;
+                  sh:message "closureLoss e' una perdita percentuale: [0,100]." ] .
+
+# ---------------------------------------------------------------------
+# A.1 Colonna-stocasticita' di P — ipotesi del Lemma 1
+#
+# Il lemma di convergenza poggia su sum_i P_ij = 1 per ogni j: e' cio' che
+# rende la propagazione una combinazione convessa e quindi una contrazione.
+# In SHACL Core non e' esprimibile (e' un vincolo aggregato), serve SPARQL.
+# ---------------------------------------------------------------------
+
+sh-sdm:ColumnStochasticShape a sh:NodeShape ;
+    sh:targetClass sdm:SyntheticTrader, sdm:EmpiricalTrader ;
+    sh:sparql [ a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "Le quote di import verso questo nodo non sommano a 1: l'ipotesi di colonna-stocasticita' del Lemma 1 e' violata e la propagazione non e' garantita convergere a un punto fisso unico." ;
+        sh:prefixes sh-sdm:prefixes ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                ?f sdm:hasDestination $this ; sdm:importShare ?s .
+            }
+            GROUP BY $this
+            HAVING (ABS(SUM(?s) - 1.0) > 0.000001)
+        """ ] .
+
+# =====================================================================
+# B. Problemi aperti noti — Warning, si azzerano da soli quando risolti
+# =====================================================================
+
+sh-sdm:IsolatedSourceShape a sh:NodeShape ;
+    sh:targetClass sdm:SyntheticTrader, sdm:EmpiricalTrader ;
+    sh:severity sh:Warning ;
+    sh:sparql [ a sh:SPARQLConstraint ;
+        sh:message "Sorgente pura: nodo con flussi in uscita ma nessuno in entrata. La sua colonna in P e' nulla, quindi in assenza di shock la sua disponibilita' converge a (1-lambda) invece che a 1 e il baseline non e' il punto fisso dell'operatore. Aggiungere il residuo domestico P_jj, oppure escludere il nodo." ;
+        sh:prefixes sh-sdm:prefixes ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                ?out sdm:hasOrigin $this .
+                FILTER NOT EXISTS { ?in sdm:hasDestination $this }
+            }
+        """ ] .
+
+sh-sdm:TargetEconomyShape a sh:NodeShape ;
+    sh:targetClass sdm:TargetEconomy ;
+    sh:class sdm:Country ;
+    sh:message "L'economia target e' una giurisdizione, non il nodo che vi opera: il marcatore va su un Country. Asserirlo su un Trader lo fa inferire come paese." ;
+    sh:property [ sh:path [ sh:inversePath sdm:locatedIn ] ; sh:minCount 1 ;
+                  sh:message "Nessun trader si trova nell'economia target: la condizione di raggiungibilita' di StableCriticalIntermediary non potrebbe mai essere soddisfatta." ] .
+
+sh-sdm:GovernanceCoverageShape a sh:NodeShape ;
+    sh:targetClass sdm:Country ;
+    sh:severity sh:Warning ;
+    sh:sparql [ a sh:SPARQLConstraint ;
+        sh:message "Nessun punteggio di governance per questo paese. Poiche' FavorableGovernanceCountry discrimina sulla soglia 0.5, l'assenza del dato lascia il paese fuori dalla classificazione in entrambe le direzioni: e' il comportamento voluto, ma la copertura va dichiarata. Verificare anche che dct:source non riporti un valore imputato." ;
+        sh:prefixes sh-sdm:prefixes ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                { FILTER NOT EXISTS { $this sdm:wgiCompositeScore ?v } }
+                UNION
+                { $this dct:source ?src .
+                  FILTER (CONTAINS(LCASE(STR(?src)), "approximate")) }
+            }
+        """ ] .
+
+sh-sdm:CriticalityScoreShape a sh:NodeShape ;
+    sh:targetClass sdm:CriticalRawMaterial ;
+    sh:property [ sh:path sdm:economicImportanceScore ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0.0 ; sh:maxInclusive 10.0 ;
+                  sh:severity sh:Warning ;
+                  sh:message "Economic Importance non asserita. La proprieta' e' dichiarata nel TBox ma resta vuota: eseguire scripts/set_crm_scores.py con i valori del rapporto ufficiale." ] ;
+    sh:property [ sh:path sdm:supplyRiskScore ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0.0 ; sh:maxInclusive 10.0 ;
+                  sh:severity sh:Warning ;
+                  sh:message "Supply Risk non asserito. Vedi sopra." ] .
+
+sh-sdm:CountryCodeShape a sh:NodeShape ;
+    sh:targetClass sdm:Country ;
+    sh:property [ sh:path skos:notation ; sh:minCount 1 ;
+                  sh:pattern "^[A-Z]{3}$" ;
+                  sh:severity sh:Warning ;
+                  sh:message "Codice paese non conforme a ISO 3166-1 alpha-3. I codici della serie XA-XZ sono riservati all'uso privato e non risolvono nella Country Named Authority List europea a cui punta skos:exactMatch." ] .
+
+sh-sdm:DownscalingProvenanceShape a sh:NodeShape ;
+    sh:targetClass sdm:DownscalingActivity ;
+    sh:property [ sh:path sdm:paretoAlpha ; sh:minCount 1 ; sh:severity sh:Warning ;
+                  sh:message "Parametro di generazione mancante: senza alpha la rete non e' riproducibile." ] ;
+    sh:property [ sh:path sdm:scalingFactorK ; sh:minCount 1 ; sh:severity sh:Warning ;
+                  sh:message "Parametro di generazione mancante: K." ] ;
+    sh:property [ sh:path sdm:maxFirmsPerCountry ; sh:minCount 1 ; sh:severity sh:Warning ;
+                  sh:message "Parametro di generazione mancante: N_max." ] ;
+    sh:property [ sh:path sdm:randomSeed ; sh:minCount 1 ; sh:severity sh:Warning ;
+                  sh:message "Parametro di generazione mancante: seed. Senza, l'ensemble sui semi non e' ricostruibile." ] ;
+    sh:property [ sh:path sdm:targetHHI ; sh:minCount 1 ; sh:severity sh:Warning ] .
