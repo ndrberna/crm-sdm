@@ -21,6 +21,19 @@ European monitoring frameworks for Critical Raw Materials typically rely on coun
 
 ---
 
+## 🔗 External Vocabularies & Alignments
+
+To maximize interoperability without introducing unnecessary ontological complexity, **CRM-SDM** reuses terms from well-established domain ontologies and standards:
+
+* **Provenance (`PROV-O`)**: `sdm:DownscalingActivity` is a subclass of `prov:Activity`. Provenance assertions (`prov:wasGeneratedBy` vs. `prov:hadPrimarySource`) are used to distinguish synthetic from empirical entities.
+* **Organization (`W3C ORG`)**: `sdm:Trader` inherits from `org:Organization`, providing a general definition of formal entities.
+* **Supply Chain Reference Ontology (`IOF SCRO`)**: Linked to `scro:SupplyChainAgent` via `skos:closeMatch`.
+  > **Design Decision**: SCRO is intentionally **not** imported directly to avoid committing to a heavy top-level ontology. Using explicit `skos:closeMatch` assertions preserves reasoning tractability while ensuring semantic interoperability.
+* **Knowledge Organization (`SKOS`)**: `sdm:CriticalRawMaterial` is declared as a subclass of `skos:Concept` to maintain alignment with CRM policy classification schemes.
+* **Geographic Entities**: Countries use `skos:notation` for ISO 3166-1 alpha-3 codes and are mapped via `skos:exactMatch` to the EU Publications Office Country Named Authority List (EU NAL).
+
+---
+
 ## 📊 Knowledge Graph Statistics
 
 | Metric | Count | Description |
