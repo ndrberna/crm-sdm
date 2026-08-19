@@ -38,7 +38,7 @@ To maximize interoperability without introducing unnecessary ontological complex
 
 | Metric | Count | Description |
 | :--- | :--- | :--- |
-| **Total Triples** | 54,790 | Combined TBox and ABox merged graph |
+| **Total Triples** | 54,720 | Combined TBox and ABox merged graph |
 | **Classes** | 12 | 10 primitive classes, 2 defined classes (`FavorableGovernanceCountry`, `StableCriticalIntermediary`) |
 | **Properties** | 35 | 10 object properties, 25 data properties |
 | **Traders** | 192 | 6 empirical (`sdm:EmpiricalTrader`), 186 synthetic (`sdm:SyntheticTrader`) |
