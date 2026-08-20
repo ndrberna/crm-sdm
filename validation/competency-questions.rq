@@ -1,0 +1,67 @@
+# =====================================================================
+#  CRM-SDM — competency questions as executable SPARQL
+#
+#  Run with:  python3 scripts/run_cqs.py
+#
+#  Each block is delimited by "#### CQn" and a "#### EXPECT" line
+#  specifying the number of expected results: this turns the suite
+#  into an automated test rather than a collection of examples.
+#
+#  Queries run on the ASSERTED graph without a reasoner. CQ3 therefore
+#  reproduces the defined class in SPARQL, and the fact that both
+#  approaches yield the same extension serves as a verification in itself.
+# =====================================================================
+
+PREFIX sdm:  <https://w3id.org/crm-sdm#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+#### CQ1  Which traders are involved in the supply network for a given
+####      critical raw material?
+#### EXPECT 192
+SELECT DISTINCT ?trader ?label ?country
+WHERE {
+  ?material a sdm:CriticalRawMaterial ; rdfs:label "Tungsten"@en .
+  ?flow a sdm:TradeFlow ; sdm:involvesMaterial ?material .
+  { ?flow sdm:hasOrigin ?trader } UNION { ?flow sdm:hasDestination ?trader }
+  ?trader a ?tc . ?tc rdfs:subClassOf* sdm:Trader .
+  OPTIONAL { ?trader rdfs:label ?label }
+  OPTIONAL { ?trader sdm:locatedIn ?c . ?c skos:notation ?country }
+}
+
+#### CQ2  What is the concentration index and associated risk class for
+####      a given material?
+#### EXPECT 1
+SELECT ?material ?label ?hhi ?ei ?sr ?riskClass
+WHERE {
+  ?material a sdm:CriticalRawMaterial ; rdfs:label ?label ;
+            sdm:associatedWithRisk ?risk .
+  ?risk sdm:hhiScore ?hhi .
+  OPTIONAL { ?material sdm:economicImportanceScore ?ei }
+  OPTIONAL { ?material sdm:supplyRiskScore ?sr }
+  BIND( IF(?hhi >= 0.25, "high", IF(?hhi >= 0.15, "moderate", "low")) AS ?riskClass )
+}
+
+#### CQ3  Which intermediary traders, located in politically stable
+####      countries, exhibit nodal elasticity toward the target economy
+####      above the threshold epsilon?
+####      Reproduces sdm:StableCriticalIntermediary in SPARQL.
+####      Must yield the same extension as the reasoner.
+#### EXPECT 3
+SELECT ?label ?elasticity ?iso ?governance
+WHERE {
+  ?trader a ?tc . ?tc rdfs:subClassOf* sdm:Trader .
+  ?trader sdm:nodalElasticity ?elasticity ;
+          sdm:locatedIn ?country ;
+          rdfs:label ?label .
+  ?country sdm:wgiCompositeScore ?governance ; skos:notation ?iso .
+  FILTER( ?elasticity >= 0.5 && ?governance >= 0.5 )
+  FILTER EXISTS { ?upstream sdm:suppliesTo ?trader }
+  FILTER EXISTS {
+    ?trader sdm:suppliesTo+ ?downstream .
+    ?downstream sdm:locatedIn ?target .
+    ?target a sdm:TargetEconomy .
+  }
+}
+ORDER BY DESC(?elasticity)
