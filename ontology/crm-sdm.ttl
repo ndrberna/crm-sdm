@@ -39,7 +39,7 @@ prov:hadPrimarySource a owl:ObjectProperty .
     dct:creator "Andrea Bernardini" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:title "CRM-SDM Ontology"@en ;
-    rdfs:comment "A Knowledge Graph and OWL 2 Ontology for Screening Critical Intermediaries in Firm-Level Raw Material Supply Networks. TBOX only – no individuals."@en ;
+    rdfs:comment "A Knowledge Graph and OWL 2 Ontology for Screening Critical Intermediaries in Firm-Level Raw Material Supply Networks."@en ;
     owl:versionIRI <https://w3id.org/crm-sdm/1.0> ;
     owl:versionInfo "1.0.0" .
 
