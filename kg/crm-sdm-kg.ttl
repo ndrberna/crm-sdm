@@ -39,7 +39,6 @@ prov:hadPrimarySource a owl:ObjectProperty .
     dct:creator "Andrea Bernardini" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:title "CRM-SDM Ontology"@en ;
-    rdfs:comment "OWL 2 formalization of the Knowledge-Graph-based Strategic Digital Model for Critical Raw Material supply chains. TBOX only – no individuals."@en ;
     owl:versionIRI <https://w3id.org/crm-sdm/1.0> ;
     owl:versionInfo "1.0.0" .
 

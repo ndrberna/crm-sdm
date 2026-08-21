@@ -1,4 +1,4 @@
-# CRM-SDM: An OWL 2 Ontology for Firm-Level Stress Testing of Critical Raw Material Supply Chains
+# CRM-SDM: A Knowledge Graph and OWL 2 Ontology for Screening Critical Intermediaries in Firm-Level Raw Material Supply Networks 
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![OWL 2 DL](https://img.shields.io/badge/W3C-OWL_2_DL-blue.svg)](https://www.w3.org/TR/owl2-overview/)
