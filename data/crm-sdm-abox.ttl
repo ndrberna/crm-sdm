@@ -56696,6 +56696,9 @@ sdm:TRADER_396a91e7 a sdm:SyntheticTrader ;
 
 sdm:DownscalingRun_export a sdm:DownscalingActivity ;
     rdfs:label "Downscaling run of the operational KG export"@en ;
+    sdm:maxFirmsPerCountry 12 ;
+    sdm:randomSeed 42 ;
+    sdm:scalingFactorK 40 ;
     sdm:targetHHI 0.1574 .
 
 sdm:TRADER_4f3bc354 a sdm:SyntheticTrader ;
