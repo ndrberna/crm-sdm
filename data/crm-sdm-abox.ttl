@@ -52289,6 +52289,7 @@ sdm:TRADER_01c7eafb a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0 ;
     sdm:locatedIn sdm:COUNTRY_GUY ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_f8224764 ;
     sdm:traderRole "exporter"^^xsd:string ;
     sdm:tradesMaterial sdm:CRM_TUNGSTEN ;
@@ -52685,6 +52686,7 @@ sdm:TRADER_f8224764 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0 ;
     sdm:locatedIn sdm:COUNTRY_NAM ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_d1fce414 ;
     sdm:traderRole "mixed"^^xsd:string ;
     sdm:tradesMaterial sdm:CRM_TUNGSTEN ;
@@ -52880,6 +52882,7 @@ sdm:TRADER_dea19abb a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0 ;
     sdm:locatedIn sdm:COUNTRY_SLV ;
+    sdm:nodalElasticity 0.0001 ;
     sdm:suppliesTo sdm:TRADER_64275e48,
         sdm:TRADER_fd22b903,
         sdm:TRADER_fe0f9e2f ;
@@ -52987,6 +52990,7 @@ sdm:TRADER_2b192a1c a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0 ;
     sdm:locatedIn sdm:COUNTRY_SEN ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_48c2c2e8,
         sdm:TRADER_4c77ba43,
         sdm:TRADER_586552fe,
@@ -53515,6 +53519,7 @@ sdm:TRADER_db36a271 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0028 ;
     sdm:locatedIn sdm:COUNTRY_LUX ;
+    sdm:nodalElasticity 0.0072 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -53565,6 +53570,7 @@ sdm:TRADER_7d859aae a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.00010 ;
     sdm:locatedIn sdm:COUNTRY_BIH ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_b5c7f0c8,
         sdm:TRADER_e7e8fb89,
         sdm:TRADER_eaa6de9b ;
@@ -53581,6 +53587,7 @@ sdm:TRADER_410f4795 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 73.0 ;
     sdm:chokepointRisk 0.00020 ;
     sdm:locatedIn sdm:COUNTRY_LVA ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_51171274,
         sdm:TRADER_711abc68,
         sdm:TRADER_94dda0d8,
@@ -53611,6 +53618,7 @@ sdm:TRADER_1d51fc75 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 20.0 ;
     sdm:chokepointRisk 0.0016 ;
     sdm:locatedIn sdm:COUNTRY_KEN ;
+    sdm:nodalElasticity 0.0007 ;
     sdm:suppliesTo sdm:TRADER_711abc68,
         sdm:TRADER_94dda0d8,
         sdm:TRADER_987681c7 ;
@@ -53683,6 +53691,7 @@ sdm:TRADER_51171274 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 23.0 ;
     sdm:chokepointRisk 0.00010 ;
     sdm:locatedIn sdm:COUNTRY_EST ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_1869d59a,
         sdm:TRADER_26cb5643,
         sdm:TRADER_410f4795 ;
@@ -53713,6 +53722,7 @@ sdm:TRADER_8b91a321 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.00020 ;
     sdm:locatedIn sdm:COUNTRY_HRV ;
+    sdm:nodalElasticity 0.0007 ;
     sdm:suppliesTo sdm:TRADER_13f145d3,
         sdm:TRADER_26cb5643,
         sdm:TRADER_3da39882,
@@ -53768,6 +53778,7 @@ sdm:TRADER_5bd48ac3 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0012 ;
     sdm:locatedIn sdm:COUNTRY_MDG ;
+    sdm:nodalElasticity 0.0026 ;
     sdm:suppliesTo sdm:TRADER_48c2c2e8,
         sdm:TRADER_4c77ba43,
         sdm:TRADER_586552fe,
@@ -53802,6 +53813,7 @@ sdm:TRADER_a7ad3612 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.00020 ;
     sdm:locatedIn sdm:COUNTRY_MKD ;
+    sdm:nodalElasticity 0.0002 ;
     sdm:suppliesTo sdm:TRADER_b5c7f0c8,
         sdm:TRADER_e7e8fb89,
         sdm:TRADER_eaa6de9b ;
@@ -53831,6 +53843,7 @@ sdm:TRADER_cb5affa6 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 20.0 ;
     sdm:chokepointRisk 0.00030 ;
     sdm:locatedIn sdm:COUNTRY_SRB ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_3388c8d8,
         sdm:TRADER_546eac05,
         sdm:TRADER_6a5c7a26,
@@ -53848,6 +53861,7 @@ sdm:TRADER_64150796 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.00090 ;
     sdm:locatedIn sdm:COUNTRY_PRT ;
+    sdm:nodalElasticity 0.0002 ;
     sdm:suppliesTo sdm:TRADER_301150ef,
         sdm:TRADER_6319d38f,
         sdm:TRADER_ec9b2990 ;
@@ -53890,6 +53904,7 @@ sdm:TRADER_cd92ce72 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.00010 ;
     sdm:locatedIn sdm:COUNTRY_LTU ;
+    sdm:nodalElasticity 0.0004 ;
     sdm:suppliesTo sdm:TRADER_410f4795,
         sdm:TRADER_51171274,
         sdm:TRADER_b5c7f0c8,
@@ -53953,6 +53968,7 @@ sdm:TRADER_154c6d9f a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.00030 ;
     sdm:locatedIn sdm:COUNTRY_CHL ;
+    sdm:nodalElasticity 0.0006 ;
     sdm:suppliesTo sdm:TRADER_213a84fb,
         sdm:TRADER_3388c8d8,
         sdm:TRADER_3afcf878,
@@ -53995,6 +54011,7 @@ sdm:TRADER_9a1d6010 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 50.0 ;
     sdm:chokepointRisk 0.0015 ;
     sdm:locatedIn sdm:COUNTRY_BGR ;
+    sdm:nodalElasticity 0.0006 ;
     sdm:suppliesTo sdm:TRADER_1619ccb3,
         sdm:TRADER_3388c8d8,
         sdm:TRADER_546eac05,
@@ -54016,6 +54033,7 @@ sdm:TRADER_cc5e045f a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.00070 ;
     sdm:locatedIn sdm:COUNTRY_UKR ;
+    sdm:nodalElasticity 0.0001 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -54042,6 +54060,7 @@ sdm:TRADER_213a84fb a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 59.0 ;
     sdm:chokepointRisk 0.00040 ;
     sdm:locatedIn sdm:COUNTRY_COL ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_045a432a,
         sdm:TRADER_28baeec6,
         sdm:TRADER_2927f365,
@@ -54073,6 +54092,7 @@ sdm:TRADER_f34ff0e5 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.00040 ;
     sdm:locatedIn sdm:COUNTRY_CRI ;
+    sdm:nodalElasticity 0.0035 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -54131,6 +54151,7 @@ sdm:TRADER_399b3a52 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 277.0 ;
     sdm:chokepointRisk 0.0028 ;
     sdm:locatedIn sdm:COUNTRY_IRL ;
+    sdm:nodalElasticity 0.0005 ;
     sdm:suppliesTo sdm:TRADER_48c2c2e8,
         sdm:TRADER_4c77ba43,
         sdm:TRADER_586552fe,
@@ -54171,6 +54192,7 @@ sdm:TRADER_d1fce414 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 100.0 ;
     sdm:chokepointRisk 0.0039 ;
     sdm:locatedIn sdm:COUNTRY_ZAF ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_0da425e1,
         sdm:TRADER_13f145d3,
         sdm:TRADER_19aca5c6,
@@ -54195,6 +54217,7 @@ sdm:TRADER_3da39882 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.001 ;
     sdm:locatedIn sdm:COUNTRY_NOR ;
+    sdm:nodalElasticity 0.0002 ;
     sdm:suppliesTo sdm:TRADER_301150ef,
         sdm:TRADER_48c2c2e8,
         sdm:TRADER_4c77ba43,
@@ -54238,6 +54261,7 @@ sdm:TRADER_10cdb3d8 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 19.0 ;
     sdm:chokepointRisk 0.0035 ;
     sdm:locatedIn sdm:COUNTRY_IDN ;
+    sdm:nodalElasticity 0.0000 ;
     sdm:suppliesTo sdm:TRADER_0aed22b7,
         sdm:TRADER_2dfdf86b,
         sdm:TRADER_521d7513,
@@ -54257,6 +54281,7 @@ sdm:TRADER_2f30b567 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0204 ;
     sdm:locatedIn sdm:COUNTRY_PHL ;
+    sdm:nodalElasticity 0.0006 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -54283,6 +54308,7 @@ sdm:TRADER_c08e0e9e a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 1137.0 ;
     sdm:chokepointRisk 0.00060 ;
     sdm:locatedIn sdm:COUNTRY_SVN ;
+    sdm:nodalElasticity 0.0003 ;
     sdm:suppliesTo sdm:TRADER_10cdb3d8,
         sdm:TRADER_2b6b86d2,
         sdm:TRADER_301150ef,
@@ -54351,6 +54377,7 @@ sdm:TRADER_82b2cd95 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 211.0 ;
     sdm:chokepointRisk 0.0013 ;
     sdm:locatedIn sdm:COUNTRY_HUN ;
+    sdm:nodalElasticity 0.0022 ;
     sdm:suppliesTo sdm:TRADER_045a432a,
         sdm:TRADER_10cdb3d8,
         sdm:TRADER_1619ccb3,
@@ -54379,6 +54406,7 @@ sdm:TRADER_045a432a a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0379 ;
     sdm:locatedIn sdm:COUNTRY_MEX ;
+    sdm:nodalElasticity 0.0001 ;
     sdm:suppliesTo sdm:TRADER_48c2c2e8,
         sdm:TRADER_4c77ba43,
         sdm:TRADER_586552fe,
@@ -54400,6 +54428,7 @@ sdm:TRADER_797185db a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0089 ;
     sdm:locatedIn sdm:COUNTRY_MEX ;
+    sdm:nodalElasticity 0.0001 ;
     sdm:suppliesTo sdm:TRADER_48c2c2e8,
         sdm:TRADER_4c77ba43,
         sdm:TRADER_586552fe,
@@ -54421,6 +54450,7 @@ sdm:TRADER_9848550e a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.01 ;
     sdm:locatedIn sdm:COUNTRY_MEX ;
+    sdm:nodalElasticity 0.0001 ;
     sdm:suppliesTo sdm:TRADER_48c2c2e8,
         sdm:TRADER_4c77ba43,
         sdm:TRADER_586552fe,
@@ -54442,6 +54472,7 @@ sdm:TRADER_aace440f a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0214 ;
     sdm:locatedIn sdm:COUNTRY_MEX ;
+    sdm:nodalElasticity 0.0002 ;
     sdm:suppliesTo sdm:TRADER_48c2c2e8,
         sdm:TRADER_4c77ba43,
         sdm:TRADER_586552fe,
@@ -54463,6 +54494,7 @@ sdm:TRADER_1619ccb3 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 86.0 ;
     sdm:chokepointRisk 0.0024 ;
     sdm:locatedIn sdm:COUNTRY_ROU ;
+    sdm:nodalElasticity 0.0330 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -54515,6 +54547,7 @@ sdm:TRADER_6ca9ae3a a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 20.0 ;
     sdm:chokepointRisk 0.0011 ;
     sdm:locatedIn sdm:COUNTRY_DNK ;
+    sdm:nodalElasticity 0.0036 ;
     sdm:suppliesTo sdm:TRADER_0aed22b7,
         sdm:TRADER_154c6d9f,
         sdm:TRADER_1c64b94a,
@@ -54568,6 +54601,7 @@ sdm:TRADER_f25d91e3 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 109.0 ;
     sdm:chokepointRisk 0.0012 ;
     sdm:locatedIn sdm:COUNTRY_SVK ;
+    sdm:nodalElasticity 0.0180 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -54629,6 +54663,7 @@ sdm:TRADER_07c6ee94 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 6.0 ;
     sdm:chokepointRisk 0.0046 ;
     sdm:locatedIn sdm:COUNTRY_THA ;
+    sdm:nodalElasticity 0.0108 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -54676,6 +54711,7 @@ sdm:TRADER_f40a00dd a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 38.0 ;
     sdm:chokepointRisk 0.0127 ;
     sdm:locatedIn sdm:COUNTRY_AUS ;
+    sdm:nodalElasticity 0.0028 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -54715,6 +54751,7 @@ sdm:TRADER_301150ef a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 272.0 ;
     sdm:chokepointRisk 0.0058 ;
     sdm:locatedIn sdm:COUNTRY_ESP ;
+    sdm:nodalElasticity 0.0105 ;
     sdm:suppliesTo sdm:TRADER_154c6d9f,
         sdm:TRADER_162cce21,
         sdm:TRADER_1c64b94a,
@@ -54826,6 +54863,7 @@ sdm:TRADER_26cb5643 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 726.0 ;
     sdm:chokepointRisk 0.0016 ;
     sdm:locatedIn sdm:COUNTRY_FIN ;
+    sdm:nodalElasticity 0.0212 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -54893,6 +54931,7 @@ sdm:TRADER_3108511e a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 1430.0 ;
     sdm:chokepointRisk 0.0074 ;
     sdm:locatedIn sdm:COUNTRY_ISR ;
+    sdm:nodalElasticity 0.0387 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -55020,6 +55059,7 @@ sdm:TRADER_e843a2c1 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 927.0 ;
     sdm:chokepointRisk 0.0069 ;
     sdm:locatedIn sdm:COUNTRY_TUR ;
+    sdm:nodalElasticity 0.0012 ;
     sdm:suppliesTo sdm:TRADER_0177fe78,
         sdm:TRADER_045a432a,
         sdm:TRADER_12b51279,
@@ -55084,6 +55124,7 @@ sdm:TRADER_1c64b94a a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0079 ;
     sdm:locatedIn sdm:COUNTRY_SWE ;
+    sdm:nodalElasticity 0.0102 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -55276,6 +55317,7 @@ sdm:TRADER_6319d38f a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 213.0 ;
     sdm:chokepointRisk 0.0031 ;
     sdm:locatedIn sdm:COUNTRY_BRA ;
+    sdm:nodalElasticity 0.0027 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -55341,6 +55383,7 @@ sdm:TRADER_db4609b6 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0111 ;
     sdm:locatedIn sdm:COUNTRY_HKG ;
+    sdm:nodalElasticity 0.0678 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -55495,6 +55538,7 @@ sdm:TRADER_12b51279 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0411 ;
     sdm:locatedIn sdm:COUNTRY_KOR ;
+    sdm:nodalElasticity 0.0068 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -55569,6 +55613,7 @@ sdm:TRADER_5cc3d2d3 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0192 ;
     sdm:locatedIn sdm:COUNTRY_KOR ;
+    sdm:nodalElasticity 0.0012 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -55643,6 +55688,7 @@ sdm:TRADER_6ea6f5ef a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 193.0 ;
     sdm:chokepointRisk 0.0109 ;
     sdm:locatedIn sdm:COUNTRY_FRA ;
+    sdm:nodalElasticity 0.0575 ;
     sdm:suppliesTo sdm:TRADER_0aed22b7,
         sdm:TRADER_1c64b94a,
         sdm:TRADER_26cb5643,
@@ -55764,6 +55810,7 @@ sdm:TRADER_0aed22b7 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0085 ;
     sdm:locatedIn sdm:COUNTRY_JPN ;
+    sdm:nodalElasticity 0.0276 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -55843,6 +55890,7 @@ sdm:TRADER_2dfdf86b a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0093 ;
     sdm:locatedIn sdm:COUNTRY_JPN ;
+    sdm:nodalElasticity 0.0007 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -56004,6 +56052,7 @@ sdm:TRADER_b899afd5 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 227.0 ;
     sdm:chokepointRisk 0.0053 ;
     sdm:locatedIn sdm:COUNTRY_JPN ;
+    sdm:nodalElasticity 0.0067 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -56083,6 +56132,7 @@ sdm:TRADER_f47bdada a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0234 ;
     sdm:locatedIn sdm:COUNTRY_JPN ;
+    sdm:nodalElasticity 0.0003 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -56251,6 +56301,7 @@ sdm:TRADER_64275e48 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 1740.0 ;
     sdm:chokepointRisk 0.0056 ;
     sdm:locatedIn sdm:COUNTRY_CAN ;
+    sdm:nodalElasticity 0.0326 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -56326,6 +56377,7 @@ sdm:TRADER_fd22b903 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0074 ;
     sdm:locatedIn sdm:COUNTRY_CAN ;
+    sdm:nodalElasticity 0.0136 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -56892,6 +56944,7 @@ sdm:TRADER_7204c821 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 130.0 ;
     sdm:chokepointRisk 0.0139 ;
     sdm:locatedIn sdm:COUNTRY_NLD ;
+    sdm:nodalElasticity 0.0832 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -57009,6 +57062,7 @@ sdm:TRADER_358a006c a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 351.0 ;
     sdm:chokepointRisk 0.0026 ;
     sdm:locatedIn sdm:COUNTRY_IND ;
+    sdm:nodalElasticity 0.0407 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -57123,6 +57177,7 @@ sdm:TRADER_6a170861 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0259 ;
     sdm:locatedIn sdm:COUNTRY_IND ;
+    sdm:nodalElasticity 0.0756 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -57799,6 +57854,7 @@ sdm:TRADER_586552fe a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0182 ;
     sdm:locatedIn sdm:COUNTRY_USA ;
+    sdm:nodalElasticity 0.0460 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -57908,6 +57964,7 @@ sdm:TRADER_735f952a a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0141 ;
     sdm:locatedIn sdm:COUNTRY_USA ;
+    sdm:nodalElasticity 0.0426 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -58017,6 +58074,7 @@ sdm:TRADER_89f24183 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0193 ;
     sdm:locatedIn sdm:COUNTRY_USA ;
+    sdm:nodalElasticity 0.0454 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -58126,6 +58184,7 @@ sdm:TRADER_b2d4d110 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 23.0 ;
     sdm:chokepointRisk 0.0138 ;
     sdm:locatedIn sdm:COUNTRY_USA ;
+    sdm:nodalElasticity 0.0325 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -58235,6 +58294,7 @@ sdm:TRADER_e3f42aeb a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0175 ;
     sdm:locatedIn sdm:COUNTRY_USA ;
+    sdm:nodalElasticity 0.0372 ;
     sdm:suppliesTo sdm:CHN_CITIC_Tungsten,
         sdm:CHN_Chongyi_Zhang,
         sdm:CHN_Hightech,
@@ -59320,6 +59380,7 @@ sdm:TRADER_315700b6 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0073 ;
     sdm:locatedIn sdm:COUNTRY_CHN ;
+    sdm:nodalElasticity 0.0058 ;
     sdm:suppliesTo sdm:TRADER_0177fe78,
         sdm:TRADER_045a432a,
         sdm:TRADER_063fdd87,
@@ -59461,6 +59522,7 @@ sdm:TRADER_50cfbfba a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 1735.0 ;
     sdm:chokepointRisk 0.0028 ;
     sdm:locatedIn sdm:COUNTRY_CHN ;
+    sdm:nodalElasticity 0.0041 ;
     sdm:suppliesTo sdm:TRADER_0177fe78,
         sdm:TRADER_045a432a,
         sdm:TRADER_063fdd87,
@@ -59746,6 +59808,7 @@ sdm:TRADER_8a356519 a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0118 ;
     sdm:locatedIn sdm:COUNTRY_CHN ;
+    sdm:nodalElasticity 0.0015 ;
     sdm:suppliesTo sdm:TRADER_0177fe78,
         sdm:TRADER_045a432a,
         sdm:TRADER_063fdd87,
@@ -60031,6 +60094,7 @@ sdm:TRADER_e906f74e a sdm:SyntheticTrader ;
     sdm:betweennessCentrality 0.0 ;
     sdm:chokepointRisk 0.0069 ;
     sdm:locatedIn sdm:COUNTRY_CHN ;
+    sdm:nodalElasticity 0.0126 ;
     sdm:suppliesTo sdm:TRADER_0177fe78,
         sdm:TRADER_045a432a,
         sdm:TRADER_063fdd87,
