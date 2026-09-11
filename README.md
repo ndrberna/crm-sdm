@@ -5,7 +5,7 @@
 [![SHACL](https://img.shields.io/badge/Validation-SHACL-green.svg)](https://www.w3.org/TR/shacl/)
 [![Reasoner: HermiT](https://img.shields.io/badge/Reasoner-HermiT-orange.svg)](http://www.hermit-reasoner.com/)
 
-Official repository for **CRM-SDM**, an OWL 2 DL ontology and companion knowledge graph designed for firm-level stress testing of Critical Raw Material (CRM) trade networks (focusing on tungsten supply chains).
+Official repository for **CRM-SDM** (Critical Raw Materials - Strategic Digital Model), an OWL 2 DL ontology and companion knowledge graph designed for firm-level stress testing of Critical Raw Material (CRM) trade networks (focusing on tungsten supply chains).
 
 ---
 
